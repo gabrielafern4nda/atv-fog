@@ -1,150 +1,128 @@
 <!DOCTYPE html>
 <html lang="pt-br">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>fogs gabriela fernanda</title>
+    <title>foga</title>
     <style>
-        body
-        {
+        body {
             width: 100%;
-            height: 100vh;
-            background-image: linear-gradient(0deg,rgb(234, 130, 130),rgb(123, 13, 13));
+            height: 140vh;
             overflow: hidden;
+            background-image: linear-gradient(180deg, rgb(164, 98, 98), rgb(105, 30, 30));
         }
-        .foguete
-        {
+
+        .foguete {
             position: absolute;
-            top: 700px;
+            top: 550px;
             left: 750px;
         }
-        .chão
-        {
-            position: fixed;
-            top: 680px;
-            left: 470px;
+
+        .chao {
+            position: absolute;
+            top: 550px;
+            left: 640px;
         }
 
-        button{
-            width: 200px;
-            height: 50px;
-            background-color: rgb(67, 205, 194);
-            color: rgb(0, 0, 0);
-            font-family:Arial, Helvetica, sans-serif;
-            cursor: pointer;
+        .nome {
+            background-color: rgb(38, 6, 6);
+            color: white;
+            font-size: 20px;
+            height: 22px;
+            padding-left: 10px;
+            width: 98%;
         }
-
     </style>
 </head>
+
 <body>
-    <img src="lua.png" class="chão">
-    <img id="foguete" src="foguete.gif" width="80px" class="foguete">
-
-    <audio id="audio1" controls autoplay>
-        <source src="contagem_regressiva.mp3" type="audio/mp3">
-        Seu navegador não suporta a reprodução de áudio.
-      </audio>
-      
-      <audio id="audio2" controls autoplay>
-        <source src="lancamento_foguete.mp3" type="audio/mp3">
-        Seu navegador não suporta a reprodução de áudio.
-      </audio>
-
-      <audio id="audio3" controls autoplay>
-        <source src="descer.mp3" type="audio/mp3">
-        Seu navegador não suporta a reprodução de áudio.
-      </audio>
-
-      <button onclick="playAudio()">Clique para reproduzir</button>
-    
-
-        
+    <img src="lua.png" id="chao" width="300px" class="chao">
+    <img src="foguete.gif" onclick="Comecar();" id="foguete" width="80px" class="foguete">
+    <div class="nome">Gabriela Fernanda Borges</div>
 
 </body>
+<script src="jquery-3.7.0.min.js"></script>
+<script>
 
+    function Comecar() {
+        var audio = new Audio('contagem_regressiva.mp3');
+        var audio2 = new Audio('lancamento_foguete.mp3');
+        var audio3 = new Audio('descer.mp3');
 
+        function playAudio() {
+            audio.play();
+        }
+        setTimeout(playAudio, 500)
 
-    <script src="jquery-3.7.0.min.js"> </script>
+        function playAudio2() {
+            audio2.play();
+        }
+        setTimeout(playAudio2, 15000)
 
-    <script>
+        function pausarAudio() {
+            audio.pause()
+        }
+        setTimeout(pausarAudio, 15000)
 
-function playAudio() {
-  var audio1 = document.getElementById('audio1');
-  var audio2 = document.getElementById('audio2');
-  var audio3 = document.getElementById('audio3');
+        function pausarAudio2() {
+            audio2.pause()
+        }
+        setTimeout(pausarAudio2, 22000)
 
-  audio1.play();
+        function playAudio3() {
+            audio3.play();
+        }
+        setTimeout(playAudio3, 22000)
 
-  audio1.onended = function() {
-    audio2.play();
-  },20000
-  };
-
-  audio2.onended = function() {
-    audio3.play();
-  },20000;
-
-        
 
         data = new Date()
         tempo_inicial = data.getTime()
 
-
         document.onkeydown = Pega_Tecla;
+        function Pega_Tecla(e) {
+            e = e || window.event;
 
-        function Pega_Tecla(e) 
-        {	
-        e = e || window.event;
+            tecla = e.keyCode;
+            console.log(tecla); 
 
-        tecla = e.keyCode;
-        console.log(tecla); // MOSTRA O CÓDIGO DA TECLA PRESSIONADA
+            data = new Date()
+            tempo_final = data.getTime()
 
-        data = new Date()
-        tempo_final = data.getTime()
-
-        if(tempo_final - tempo_inicial > 1000)
-        {
-            tempo_inicial = tempo_final
-            
-            if(tecla == 37)
-        {
-            x = x - 20
-        }
-        if(tecla == 39)
-        {
-            x = x + 20
-        }
-        }
-
-        
-        }
-
-        temporizador = setTimeout(Subir,20000)
-        x = 750
-        y = 10
-        TOPO = ""
-        ESQUERDA = ""
-        function Subir()
-        {
-            TOPO = y + "px"
-            $("#foguete").animate({top:TOPO},20000)
-            temporizador = null
-            temporizador = setInterval(Descer,5000)
-        }
-        function Descer()
-        {
-            y = y + 100
-            if(y>700)
-            {
-            y = 700
+            if (tempo_final - tempo_inicial > 1000) {
+                tempo_inicial = tempo_final
+                if (tecla == 37) {
+                    x = x - 20
+                }
+                if (tecla == 39) {
+                    x = x + 20
+                }
             }
-            TOPO = y + "px"
-            ESQUERDA = x + "px"
-            $("#foguete").animate({left:ESQUERDA,top:TOPO},1000)
-            
         }
 
-    </script>
-   
+        teleporizador = setTimeout(Subir, 15000)
+        x = 750;
+        y = 100;
+        TOPO = "";
+        esquerda = "";
+
+        function Subir() {
+            TOPO = y + "px";
+            $("#foguete").animate({ top: TOPO }, 7000)
+            temporizador = null
+            temporizador = setInterval(Descer, 1000)
+        }
+        function Descer() {
+            y = y + 25
+            TOPO = y + "px"
+            esquerda = x + "px"
+            $("#foguete").animate({ left: esquerda, top: TOPO }, 1000)
+            if (y > 520) {
+                y = 520;
+            }
+        }
+    }
+</script>
+
 </html>
